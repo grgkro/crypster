@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private zone: NgZone,
+  constructor(private ngZone: NgZone,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -99,7 +99,11 @@ export class LandingComponent implements OnInit {
       innerWidth / innerHeight,
       0.1,
       1000);
-    const renderer = new THREE.WebGLRenderer();
+
+    const canvas = document.getElementById('canvas');
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas
+    });
 
     renderer.setSize(innerWidth, innerHeight);
     renderer.setPixelRatio(devicePixelRatio);
@@ -115,10 +119,8 @@ export class LandingComponent implements OnInit {
       mouse.y = -(event.clientY / innerHeight) * 2 + 1;
     }
 
-    this.zone.runOutsideAngular(() => {
+    this.ngZone.runOutsideAngular(() => {
       document.addEventListener('mousemove', mouseMove.bind(this));
-      document.body.appendChild(renderer.
-        domElement);
     });
 
     const planeGeometry = new THREE.PlaneGeometry(
@@ -299,34 +301,34 @@ export class LandingComponent implements OnInit {
             duration: 1.5
           });
 
-          gsap.to(camera.rotation,
-            {
-              x: Math.PI / 2,
-              ease: 'power3.inOut',
-              duration: 1.5,
-            });
+        gsap.to(camera.rotation,
+          {
+            x: Math.PI / 2,
+            ease: 'power3.inOut',
+            duration: 1.5,
+          });
 
-            gsap.to(camera.position,
-              {
-                y: 1000,
-                ease: 'power3.in',
-                duration: 1,
-                delay: 1.5,
-                onComplete: () => {
-                  alert('finished');
-                  this.router.navigate()
-                }
-              });
+        gsap.to(camera.position,
+          {
+            y: 1000,
+            ease: 'power3.in',
+            duration: 1,
+            delay: 1.5,
+            onComplete: () => {
+                console.log(this.router)
+                this.router.navigate(['/generate']);
+            }
+          });
       })
 
-      // responsiveness
-      addEventListener('resize', () => {
-        console.log('resize');
-        camera.aspect = innerWidth / innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(innerWidth, innerHeight);
-        renderer.setPixelRatio(devicePixelRatio);
-      })
+    // responsiveness
+    addEventListener('resize', () => {
+      console.log('resize');
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+      renderer.setPixelRatio(devicePixelRatio);
+    })
 
   }
 

@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CryptoModule } from './crypto/crypto.module';
+import { LandingPageModule } from './landing-page/landing-page.module';
  
  
-const routes: Routes = [
-  { path: '**', component: NotFoundComponent }
-];
+const routes: Routes = [{
+    path: '',
+    loadChildren : () => LandingPageModule
+ },
+ {
+    path: "generate",
+    loadChildren : () => CryptoModule
+  }]
  
 @NgModule({
-  declarations:[NotFoundComponent],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: []
 })
 export class AppRoutingModule { }

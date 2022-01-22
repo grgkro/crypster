@@ -13,8 +13,9 @@
             <div class="pt-6">
                 <label>Type:</label>
                 <div>
-                    <div *ngFor="let action of actionList" >
-                        <input id="action-{{action.name}}" type="radio" value="{{action.name}}" formControlName="action">
+                    <div *ngFor="let action of actionList">
+                        <input id="action-{{action.name}}" type="radio" value="{{action.name}}"
+                            formControlName="action">
                         <label for="action-{{action.name}}">{{action.name}}</label>
                     </div>
                 </div>
@@ -22,19 +23,33 @@
             <div class="pt-6">
                 <label>Connection:</label>
                 <div>
-                    <div *ngFor="let connection of connectionList" >
-                        <input id="connection-{{connection.name}}" type="radio" value="{{connection.name}}" formControlName="connection">
+                    <div *ngFor="let connection of connectionList">
+                        <input id="connection-{{connection.name}}" type="radio" value="{{connection.name}}"
+                            formControlName="connection">
                         <label for="connection-{{connection.name}}">{{connection.name}}</label>
                     </div>
                 </div>
             </div>
             <div class="pt-6">
                 <label>Keypair:</label>
-                <div >
-                    <div *ngFor="let userKeypair of userKeypairList" >
-                        <input id="userKeypair-{{userKeypair.name}}" type="radio" value="{{userKeypair.name}}" formControlName="userKeypair">
+                <div>
+                    <div *ngFor="let userKeypair of userKeypairList">
+                        <input id="userKeypair-{{userKeypair.name}}" type="radio" value="{{userKeypair.name}}"
+                            formControlName="userKeypair">
                         <label for="userKeypair-{{userKeypair.name}}">{{userKeypair.name}}</label>
                     </div>
+                </div>
+            </div>
+            <div class="pt-6">
+                <label for="email">Your email:</label>
+                <div>
+                    <input id="email" type="text" formControlName="email">
+                </div>
+            </div>
+            <div class="pt-6">
+                <label for="password">Your password:</label>
+                <div>
+                    <input id="password" type="text" formControlName="password">
                 </div>
             </div>
             <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
@@ -44,7 +59,7 @@
                 </p>
             </div>
 
-            <button class="btn btn-primary" type="submit" >Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </figure>
 </div>

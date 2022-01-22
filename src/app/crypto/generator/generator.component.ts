@@ -31,7 +31,7 @@ export class GeneratorComponent implements OnInit {
       name:'create a currency',
     },
     {
-      name:'create an account',
+      name:'create a wallet',
     }
   ]
   connectionList = [
@@ -42,7 +42,7 @@ export class GeneratorComponent implements OnInit {
       name:'testnet',
     },
     {
-      name:'mainnet',
+      name:'mainnet-beta',
     }
   ]
   userKeypairList = [
@@ -59,10 +59,11 @@ export class GeneratorComponent implements OnInit {
   ) { 
     this.mainForm = fb.group({
       chain: ['Solana', [Validators.required]], 
-      action: ['create an account', [Validators.required]],  // 0 = NFT, 1 = currency
+      action: ['create a wallet', [Validators.required]],  // 0 = NFT, 1 = currency
       connection: ['devnet', [Validators.required]],
       userKeypair: ['create', [Validators.required]],
-      userEmail: [[Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
     })
   }
 

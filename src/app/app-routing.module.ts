@@ -5,11 +5,13 @@ import { LandingPageModule } from './landing-page/landing-page.module';
  
  
 const routes: Routes = [{
-    path: '',
+    path: 'generate',
+    // path: '',
     loadChildren : () => LandingPageModule
  },
  {
-    path: "generate",
+    path: "",
+    // path: "generate",
     loadChildren : () => CryptoModule
   }]
  

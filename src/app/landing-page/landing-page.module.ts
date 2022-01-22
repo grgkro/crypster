@@ -4,10 +4,6 @@ import { LandingComponent } from './landing/landing.component';
 import { RouterModule, Routes } from '@angular/router'
 import { CryptoModule } from '../crypto/crypto.module';
 
-const routes: Routes = [
-  { path: '', component: LandingComponent },
-]
-
 @NgModule({
   declarations: [LandingComponent],
   imports: [
@@ -15,11 +11,13 @@ const routes: Routes = [
     RouterModule.forChild([
       
     {
-      path: "generate",
+      path: "",
+      // path: "generate",
       loadChildren : () => CryptoModule
     },
     {
-      path: "",
+      path: "generate",
+      // path: "",
       component: LandingComponent,
     },
   ]),

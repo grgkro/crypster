@@ -3,4 +3,48 @@
     font-exo text-white text-5xl
     px-6 py-12">
         GENERATE CRYPTO</h2>
+    <figure class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
+        <form [formGroup]="mainForm" (ngSubmit)="submit()">
+            <label>Chain:</label>
+            <div *ngFor="let chain of chainsList">
+                <input id="chain-{{chain.name}}" type="radio" value="{{chain.name}}" formControlName="chain">
+                <label for="chain-{{chain.name}}">{{chain.name}}</label>
+            </div>
+            <div class="pt-6">
+                <label>Type:</label>
+                <div>
+                    <div *ngFor="let action of actionList" >
+                        <input id="action-{{action.name}}" type="radio" value="{{action.name}}" formControlName="action">
+                        <label for="action-{{action.name}}">{{action.name}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6">
+                <label>Connection:</label>
+                <div>
+                    <div *ngFor="let connection of connectionList" >
+                        <input id="connection-{{connection.name}}" type="radio" value="{{connection.name}}" formControlName="connection">
+                        <label for="connection-{{connection.name}}">{{connection.name}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6">
+                <label>Keypair:</label>
+                <div >
+                    <div *ngFor="let userKeypair of userKeypairList" >
+                        <input id="userKeypair-{{userKeypair.name}}" type="radio" value="{{userKeypair.name}}" formControlName="userKeypair">
+                        <label for="userKeypair-{{userKeypair.name}}">{{userKeypair.name}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
+                <p *ngIf="chain==='Solana'" class="text-lg font-medium">
+                    With 65,000 transactions per second, very low transaction fees and millions of active users, Solana
+                    is a real threat to Ethereum.
+                </p>
+            </div>
+
+            <button class="btn btn-primary" type="submit" >Submit</button>
+        </form>
+    </figure>
 </div>
